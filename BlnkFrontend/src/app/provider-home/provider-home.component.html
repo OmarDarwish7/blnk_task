@@ -1,0 +1,55 @@
+<app-header></app-header>
+<div class="container">
+  <h1>Welcome, Loan Provider!</h1>
+
+  <form #fundForm="ngForm" (ngSubmit)="submitForm()">
+    <label for="newFund">New Fund:</label>
+    <input type="number" id="newFund" name="newFund" [(ngModel)]="newFund" required>
+
+    <button type="submit">Add Fund</button>
+  </form>
+
+  <p *ngIf="errorMessage">{{ errorMessage }}</p>
+</div>
+
+<h2>All My Loans</h2>
+<table class="loans-table">
+  <thead>
+    <tr>
+      <th>Total Amount</th>
+      <th>Monthly Amount</th>
+      <th>Amount Paid</th>
+      <th>Amount To Pay</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let loan of loans">
+      <td>{{loan.total_amount}}</td>
+      <td>{{ loan.monthly_amount }}</td>
+      <td>{{ loan.current_paid }}</td>
+      <td>{{ loan.amount_to_pay }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>All My Funds</h2>
+<table class="loans-table">
+  <thead>
+    <tr>
+      <th>Fund Amount</th>
+      <th>Date Added</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let fund of funds">
+      <td>{{fund.amount}}</td>
+      <td>{{ fund.date }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<router-outlet></router-outlet>

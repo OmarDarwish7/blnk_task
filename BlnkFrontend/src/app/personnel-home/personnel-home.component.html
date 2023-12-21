@@ -1,0 +1,95 @@
+<app-header></app-header>
+<div>
+  <h3>Current Budget : {{currentBudget}}</h3>
+
+<h2>Loan Schemas</h2>
+<table class="loans-table">
+  <thead>
+    <tr>
+      <th>Min Amount</th>
+      <th>Max Amount</th>
+      <th>Interest Rate</th>
+      <th>Term</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let schema of loanSchemas">
+      <td>{{ schema.min_amount }}</td>
+      <td>{{ schema.max_amount }}</td>
+      <td>{{ schema.interest_rate }}</td>
+      <td>{{ schema.term }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Define Loan Schema</h2>
+
+<form (ngSubmit)="submitLoanSchema()" class="loan-form">
+  <!-- Input fields for loan schema data -->
+  <div class="form-group">
+    <label for="minAmount">Min Amount:</label>
+    <input name="min_amount" type="number" [(ngModel)]="min_amount" required>
+  </div>
+
+  <div class="form-group">
+    <label for="maxAmount">Max Amount:</label>
+    <input name="max_amount" type="number" [(ngModel)]="max_amount" required>
+  </div>
+
+  <div class="form-group">
+    <label for="interestRate">Interest Rate:</label>
+    <input name="interest_rate" type="number" [(ngModel)]="interest_rate" required>
+  </div>
+
+  <div class="form-group">
+    <label for="term">Term:</label>
+    <input name="term" type="number" [(ngModel)]="term" required>
+  </div>
+
+  <div class="form-group">
+    <label for="bankPercentage">Bank Percentage:</label>
+    <input name="bank_percentage" type="number" [(ngModel)]="bank_percentage" required>
+  </div>
+
+  <!-- Add similar input fields for maxAmount, interestRate, term, and bankPercentage -->
+
+  <button type="submit" class="submit-button">Submit</button>
+</form>
+
+<h2>All Loans</h2>
+<table class="loans-table">
+  <thead>
+    <tr>
+      <th>Requested Amount</th>
+      <th>Interest Rate</th>
+      <th>Amount After Interest</th>
+      <th>Amount Paid</th>
+      <th>Amount To Pay</th>
+      <th>Monthly Amount</th>
+      <th>Bank Percentage</th>
+      <th>Term</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let loan of loans">
+      <td>{{ loan.requested_amount }}</td>
+      <td>{{ loan.interest_rate }}</td>
+      <td>{{ loan.amount_after_interest }}</td>
+      <td>{{ loan.amount_paid }}</td>
+      <td>{{ loan.amount_to_pay }}</td>
+      <td>{{ loan.monthly_amount }}</td>
+      <td>{{ loan.bank_percentage }}</td>
+      <td>{{ loan.term }}</td>
+      <td>{{ loan.status }}</td>
+      <td *ngIf="loan.status == 'Pending'"><button (click)="acceptLoan(loan.id)">Accept Loan</button></td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+
+
+
+<router-outlet></router-outlet>

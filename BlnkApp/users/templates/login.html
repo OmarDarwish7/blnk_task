@@ -1,0 +1,27 @@
+{% extends "admin/login.html" %}
+
+{% block content %}
+  <h2>Login</h2>
+  <form method="post" action="{% url 'admin:login' %}" id="login-form">
+    {% csrf_token %}
+    <div class="form-row">
+      <label for="id_username">Username:</label>
+      <input type="text" name="username" autofocus required>
+    </div>
+    <div class="form-row">
+      <label for="id_password">Password:</label>
+      <input type="password" name="password" required>
+    </div>
+    <div class="submit-row">
+      <input type="submit" value="Log in">
+    </div>
+  </form>
+
+  {% if messages %}
+    <ul class="messagelist">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

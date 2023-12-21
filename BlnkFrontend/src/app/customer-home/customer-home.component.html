@@ -1,0 +1,57 @@
+<app-header></app-header>
+<form #fundForm="ngForm" (ngSubmit)="applyForLoan()">
+  <label for="newFund">Apply For Loan:</label>
+  <input type="number" id="newFund" name="newFund" [(ngModel)]="loanAmount" required>
+
+  <button type="submit">Apply For Loan</button>
+</form>
+<h2>Loan Schemas</h2>
+<table class="loans-table" border="1">
+  <thead>
+    <tr>
+      <th>Min Amount</th>
+      <th>Max Amount</th>
+      <th>Interest Rate</th>
+      <th>Term</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let schema of loanSchemas">
+      <td>{{ schema.min_amount }}</td>
+      <td>{{ schema.max_amount }}</td>
+      <td>{{ schema.interest_rate }}</td>
+      <td>{{ schema.term }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2>All My Loans</h2>
+<table class="loans-table" border="1">
+  <thead>
+    <tr>
+      <th>Requested Amount</th>
+      <th>Interest Rate</th>
+      <th>Term</th>
+      <th>Monthly Amount</th>
+      <th>Amount Paid</th>
+      <th>Amount To Pay</th>
+      <th>Amount After Interest</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let loan of userLoans">
+      <td>{{ loan.requested_amount}}</td>
+      <td>{{ loan.interest_rate}}</td>
+      <td>{{ loan.term}}</td>
+      <td>{{ loan.monthly_amount}}</td>
+      <td>{{ loan.amount_paid}}</td>
+      <td>{{ loan.amount_to_pay}}</td>
+      <td>{{ loan.amount_after_interest}}</td>
+      <td>{{ loan.status}}</td>
+      <td (click)="payInstallment(loan.id)" *ngIf="loan.status =='Accepted'"><button>Pay Installment</button></td>
+    </tr>
+  </tbody>
+</table>
+

@@ -11,7 +11,3 @@ class UserModel(AbstractUser):
     date_of_birth = models.DateField(blank=True, null=True, default = "N/A")
     user_type = models.CharField(blank=False,null=False, default = "N/A")
     national_id = models.CharField(blank=False,null=False, default = "N/A")
-
-
-    def __str__(self):
-        return self.username

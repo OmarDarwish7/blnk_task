@@ -69,6 +69,7 @@ export class PersonnelHomeComponent implements OnInit {
       {id: loanId}
     ).subscribe((response)=>{
       console.log(response);
+      window.location.reload();
     })
   }
 

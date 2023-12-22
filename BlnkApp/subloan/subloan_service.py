@@ -33,8 +33,12 @@ def pay_installments(loan_id):
             for subloan in subloans:
                 subloan.current_paid += subloan.monthly_amount
                 subloan.amount_to_pay -= subloan.monthly_amount
-
+                if subloan.amount_to_pay <=0:
+                    subloan.amount_to_pay = 0
+                    subloan.current_paid = subloan.total_amount
+               
                 subloan.save()
+            
 
             return 'success'
         return 'unsuccessful'

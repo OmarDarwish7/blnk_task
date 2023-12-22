@@ -201,7 +201,7 @@ def pay_installment(request):
                         loan.amount_paid += loan.monthly_amount
                         loan.amount_to_pay -= loan.monthly_amount
 
-                        if loan.amount_to_pay < 0:
+                        if loan.amount_to_pay <= 0:
                             loan.status = 'Done'
                             loan.amount_to_pay = 0
                             loan.amount_paid = loan.amount_after_interest
